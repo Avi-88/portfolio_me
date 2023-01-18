@@ -1,32 +1,35 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import "./App.css";
 import Navbar from "./components/Navbar";
 
 function App() {
-
   const [darkMode, setSetDarkMode] = useState(true);
 
-  const handleMode = () => {
+  useEffect(() => {
     if (localStorage.getItem("color-theme")) {
       if (localStorage.getItem("color-theme") === "light") {
-        setSetDarkMode(true);
-        document.documentElement.classList.add('dark');
-        localStorage.setItem("color-theme", "dark");
-      } else {
         setSetDarkMode(false);
-        document.documentElement.classList.remove('dark');
-        localStorage.setItem("color-theme", "light");
+        document.documentElement.classList.remove("dark");
+      } else {
+        setSetDarkMode(true);
+        document.documentElement.classList.add("dark");
       }
     } else {
-      if (darkMode) {
-        setSetDarkMode(false);
-        document.documentElement.classList.remove('dark');
-        localStorage.setItem("color-theme", "light");
-      } else {
-        setSetDarkMode(true);
-        document.documentElement.classList.add('dark');
-        localStorage.setItem("color-theme", "dark");
-      }
+      setSetDarkMode(true);
+      document.documentElement.classList.add("dark");
+      localStorage.setItem("color-theme", "dark");
+    }
+  }, []);
+
+  const handleMode = () => {
+    if(darkMode){
+      setSetDarkMode(false);
+      document.documentElement.classList.remove("dark");
+      localStorage.setItem("color-theme", "light");
+    } else {
+      setSetDarkMode(true);
+      document.documentElement.classList.add("dark");
+      localStorage.setItem("color-theme", "dark");      
     }
   };
 
