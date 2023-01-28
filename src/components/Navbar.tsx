@@ -8,7 +8,7 @@ function Navbar({ mode, toggle }: NavbarProps) {
   const [isOpen, setIsOpen] = useState(false);
 
   const defaultMenuStyle =
-    "absolute float-left p-4  right-0 flex-col justify-evenly items-center z-50 shadow-md mt-1 md:min-w-max   dark:bg-[#22262F] border border-gray-300 dark:border-transparent rounded-lg ";
+    "absolute right-0 p-4 md:hidden w-full   flex-col justify-evenly items-center z-50 shadow-md mt-1 md:min-w-max bg-white  dark:bg-[#22262F] border border-gray-300 dark:border-transparent rounded-lg ";
 
   const handleMenu = () => {
     if (isOpen) {
@@ -19,6 +19,7 @@ function Navbar({ mode, toggle }: NavbarProps) {
   };
 
   return (
+    <>
     <div className="w-full text-gray-500  dark:text-[#e3e5e885] h-16 flex justify-between  items-center lg:px-32 md:px-20 sm:px-10 px-5 py-10">
       <div>
         <img src="/vite.svg" className="h-10" />
@@ -58,7 +59,10 @@ function Navbar({ mode, toggle }: NavbarProps) {
           onClick={handleMenu}
           className="dark:bg-[#22262F] dark:hover:text-white border cursor-pointer border-gray-300 shadow-md dark:border-transparent  rounded-full py-1.5 px-3"
         >
-          <svg
+{ isOpen ? (<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-6 h-6">
+  <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
+</svg>
+) :         (<svg
             xmlns="http://www.w3.org/2000/svg"
             fill="none"
             viewBox="0 0 24 24"
@@ -71,28 +75,31 @@ function Navbar({ mode, toggle }: NavbarProps) {
               strokeLinejoin="round"
               d="M3.75 9h16.5m-16.5 6.75h16.5"
             />
-          </svg>
+          </svg>)}
         </button>
-        <div
+
+      </div>
+    </div>
+    <div
           className={
             isOpen ? defaultMenuStyle + "flex" : defaultMenuStyle + "hidden"
           }
         >
-          <div className="flex flex-col justify-evenly items-center ">
-            <div className=" dark:hover:text-white  cursor-pointer hover:text-gray-800  rounded-full px-4 py-1">
+          <div className="flex flex-col justify-evenly w-full items-center text-gray-500 ">
+            <div className=" dark:hover:text-white w-full text-center cursor-pointer hover:text-gray-800  rounded-full px-4 py-3">
               <a className="py-2 px-0.5 text-sm font-semibold">About</a>
             </div>
-            <div className=" dark:hover:text-white  cursor-pointer hover:text-gray-800  rounded-full px-4 py-1">
+            <div className=" dark:hover:text-white w-full text-center cursor-pointer hover:text-gray-800  rounded-full px-4 py-3">
               <a className="py-2 px-0.5 text-sm font-semibold">Skills</a>
             </div>
-            <div className=" dark:hover:text-white  cursor-pointer hover:text-gray-800  rounded-full px-4 py-1">
+            <div className=" dark:hover:text-white w-full text-center cursor-pointer hover:text-gray-800  rounded-full px-4 py-3">
               <a className="py-2 px-0.5 text-sm font-semibold">Projects</a>
             </div>
-            <div className=" dark:hover:text-white  cursor-pointer hover:text-gray-800  rounded-full px-4 py-1">
+            <div className=" dark:hover:text-white w-full text-center cursor-pointer hover:text-gray-800  rounded-full px-4 py-3">
               <a className="py-2 px-0.5 text-sm font-semibold">Contact</a>
             </div>
           </div>
-          <div className="mt-2">
+          <div className="my-3">
             <div className="relative inline-block w-10  align-middle select-none ml-1 transition duration-200 ease-in">
               <input
                 type="checkbox"
@@ -109,8 +116,7 @@ function Navbar({ mode, toggle }: NavbarProps) {
             </div>
           </div>
         </div>
-      </div>
-    </div>
+    </>
   );
 }
 
